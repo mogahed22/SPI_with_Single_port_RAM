@@ -4,11 +4,11 @@ module SPI (MOSI,MISO,SS_n,clk,rst_n,rx_data,tx_data,rx_valid,tx_valid);
     parameter TX_SIZE = 8;
     parameter RX_SIZE = 10;
     //decler states as parameter
-    parameter IDLE = 3'b000;
-    parameter CHK_CMD = 3'b001;
-    parameter WRITE = 3'b010;
-    parameter READ_ADD = 3'b011;
-    parameter READ_DATA = 3'b100;
+    parameter IDLE = 5'b00001;
+    parameter CHK_CMD = 5'b00010;
+    parameter WRITE = 5'b00100;
+    parameter READ_ADD = 5'b01000;
+    parameter READ_DATA = 5'b10000;
 
     //inputs
     input  MOSI, clk, rst_n, SS_n, tx_valid;
@@ -22,7 +22,7 @@ module SPI (MOSI,MISO,SS_n,clk,rst_n,rx_data,tx_data,rx_valid,tx_valid);
     output reg MISO;
 
     //regs
-    reg [2:0] cs,ns;
+    reg [4:0] cs,ns;
     reg read_data_falg  ;
     reg [3:0] counter ,  counter1 ;
     reg [9:0]spbus ;
